@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Site de recettes';
+  title = 'MinuteMeal';
+  listIngredient = 'Liste des Ingrédients';
 }

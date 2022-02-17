@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
+import { Ingredient } from './Ingredient';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class IngredientsService {
 
   constructor(private http: HttpClient) { }
 
-  getIngredients(): Observable<any> {
-    return this.http.get(this.urlBase+'produits');
+  getIngredients(): Observable<Ingredient[]> {
+    return this.http.get<Ingredient[]>(this.urlBase+'produits');
   }
 }

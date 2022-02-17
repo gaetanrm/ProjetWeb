@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { IngredientsService } from '../ingredients.service';
 import { Observable } from 'rxjs';
+import { Ingredient } from '../Ingredient';
 
 @Component({
   selector: 'app-ingredients',
@@ -10,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class IngredientsComponent implements OnInit {
 
-  public ingredients: Object[] = new Array();
+  public ingredients: Ingredient[] = new Array();
 
   constructor(private listIngredients: IngredientsService ) { }
 
@@ -18,7 +19,6 @@ export class IngredientsComponent implements OnInit {
     console.log("Invocation du composant produits");
     this.listIngredients.getIngredients().subscribe(ingredients => {
       this.ingredients = ingredients;
-      console.dir(this.ingredients);
     });
   }
 
