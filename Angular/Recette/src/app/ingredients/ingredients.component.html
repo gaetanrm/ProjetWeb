@@ -1,8 +1,17 @@
-<div class="row justify-content-center">
-    <div class="card-body">
+<div class="container">
+
       <div *ngFor="let ingredient of ingredients" class="card">
-        <div class="card-text mx-auto"> {{ingredient.nom}}
-        </div>
+          <div class="col s6 m6 l6">
+            <div class="card cyan">
+              <div class="card-content white-text">
+                  <span class="card-title center">{{ingredient.nom}}</span>
+                  <span class="card-content center">Prix : {{ingredient.prix}} €</span>
+                  <span class="card-content center">Unité : {{ingredient.unite}}</span>
+              </div>
+              <div class="card-action">
+                <a href="#" class="white-text">en savoir plus</a>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
-  </div>

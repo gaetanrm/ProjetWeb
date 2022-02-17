@@ -8,4 +8,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'MinuteMeal';
   listIngredient = 'Liste des Ingrédients';
+  listRecettes = 'Liste des Recettes';
 }
