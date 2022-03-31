@@ -23,12 +23,19 @@
 </div>
 -->
 <div class="card">
-    <div class="card-image waves-effect waves-block waves-light">
-      <img class="activator responsive-img" src="lasagnes.jpg">
-    </div>
     <div class="card-content">
-      <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-      <p><a href="#">Voir les avis</a></p>
+      <div *ngFor="let recette of recettes" class="card">
+        <span class="card-title activator grey-text text-darken-4">{{recette.nom}}<i class="material-icons right">more_vert</i></span>
+              <span class="card-content center">Ingrédients : </span>
+              <ul>
+                  <li *ngFor="let ingredient of recette.ingredients; index as index">
+                      <span class=""card-content-center>Ingrédient {{index+1}}: {{ingredient[0]}}, Quantité: {{ingredient[1]}}</span>
+                  </li>
+              </ul>
+              <span class="card-content center">mode de Cuisson : {{recette.modeCuisson}}</span>
+              <span class="card-content center">Nombre de Personnes : {{recette.nombrePersonnes}}</span>
+        <p><a href="#">Voir les avis</a></p>
+      </div>
     </div>
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
