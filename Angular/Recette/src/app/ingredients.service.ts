@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators'
 import { Ingredient } from './Ingredient';
+import { Recette } from './Recette';
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +15,9 @@ export class IngredientsService {
 
   getIngredients(): Observable<Ingredient[]> {
     return this.http.get<Ingredient[]>(this.urlBase+'produits');
+  }
+
+  getRecettes(): Observable<Recette[]> {
+    return this.http.get<Recette[]>(this.urlBase+'recettes');
   }
 }

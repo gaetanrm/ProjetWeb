@@ -29,6 +29,18 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
             res.end(JSON.stringify([]));
         }
     });
+    /* Liste des produits */
+    app.get("/recettes", (req,res) => {
+        console.log("/recettes");
+        try {
+            db.collection("recettes").find().toArray((err, documents) => {
+                res.end(JSON.stringify(documents));
+            });
+        } catch(e) {
+            console.log("Erreur sur /recettes : " + e);
+            res.end(JSON.stringify([]));
+        }
+    });
     /*app.get("/produits/:categorie", (req,res) => {
 	let categorie = req.params.categorie;
         console.log("/produits/"+categorie);

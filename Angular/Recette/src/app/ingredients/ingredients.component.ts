@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
 import { IngredientsService } from '../ingredients.service';
-import { Observable } from 'rxjs';
 import { Ingredient } from '../Ingredient';
 
 @Component({
@@ -16,7 +14,7 @@ export class IngredientsComponent implements OnInit {
   constructor(private listIngredients: IngredientsService ) { }
 
   ngOnInit() {
-    console.log("Invocation du composant produits");
+    console.log("Recherche des ingrédients");
     this.listIngredients.getIngredients().subscribe(ingredients => {
       this.ingredients = ingredients;
     });
