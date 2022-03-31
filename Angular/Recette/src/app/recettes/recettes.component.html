@@ -1,34 +1,13 @@
-<!--
-<div class="container">
-    <div *ngFor="let recette of recettes" class="card">
-      <div class="col s6 m6 l6">
-        <div class="card cyan">
-          <div class="card-content white-text">
-            <span class="card-title center">{{recette.nom}}</span>
-            <span class="card-content center">Ingrédients : </span>
-            <ul>
-                <li *ngFor="let ingredient of recette.ingredients; index as index">
-                    <span class=""card-content-center>Ingrédient {{index+1}}: {{ingredient[0]}}, Quantité: {{ingredient[1]}}</span>
-                </li>
-            </ul>
-            <span class="card-content center">mode de Cuisson : {{recette.modeCuisson}}</span>
-            <span class="card-content center">Nombre de Personnes : {{recette.nbPersonnes}}</span>
-          </div>
-          <div class="black card-action">
-            <a href="#" class="white-text">voir les avis</a>
-          </div>
-        </div>
-      </div>
-    </div>
-</div>
--->
 <div class="row center-cols center-align">
   <div *ngFor="let recette of recettes">
     <div class="card col m6">
       <div class="card-content">
         <span class="card-title center activator grey-text text-darken-4">{{recette.nom}}<i class="material-icons right">more_vert</i></span>
-        <span class="center">Cliquez pour voir les ingrédients</span>
-        <p><a href="#">Voir les avis</a></p>
+        <span class="card-content center">mode de Cuisson : {{recette.modeCuisson}}</span>
+        <span class="card-content center">Nombre de Personnes : {{recette.nombrePersonnes}}</span>
+        <div class="card-action">
+          <p><a href="#" class="cyan-text">Voir les avis</a></p>
+        </div>
       </div>
       <div class="card-reveal">
         <span class="card-title grey-text text-darken-4">{{recette.nom}}<i class="material-icons right">close</i></span>
@@ -37,8 +16,6 @@
             <span class="card-content-center">Ingrédient {{index+1}}: {{ingredient[0]}}, Quantité: {{ingredient[1]}}</span>
           </li>
         </ul>
-        <span class="card-content center">mode de Cuisson : {{recette.modeCuisson}}</span>
-        <span class="card-content center">Nombre de Personnes : {{recette.nombrePersonnes}}</span>
       </div>
     </div>
   </div>

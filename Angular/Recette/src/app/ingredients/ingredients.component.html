@@ -1,16 +1,37 @@
-<div class="container">
-  <div *ngFor="let ingredient of ingredients" class="card">
-    <div class="col s6 m6 l6">
-      <div class="card cyan">
-        <div class="card-content white-text">
-          <span class="card-title center">{{ingredient.nom}}</span>
-          <span class="card-content center">Prix : {{ingredient.prix}} €</span>
-          <span class="card-content center">Unité : {{ingredient.unite}}</span>
-        </div>
-        <div class="card-action">
-          <a href="#" class="white-text">en savoir plus</a>
+<div class="row center-cols center-align">
+  <div *ngFor="let ingredient of ingredients">
+    <div class="card col m6">
+      <div class="card-content">
+        <span class="card-title center grey-text text-darken-4">{{ingredient.nom}}</span>
+        <span class="card-content center">Prix : {{ingredient.prix}} €</span>
+        <span class="card-content center">Unité : {{ingredient.unite}}</span>
+        <div class="card-action" >
+          <p><a href="#" class="cyan-text">En savoir plus</a></p>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<!--
+<div class="row center-cols center-align">
+  <div *ngFor="let ingredient of ingredients">
+    <div class="card col m6">
+      <div class="card-content">
+        <span class="card-title center activator grey-text text-darken-4">{{recette.nom}}<i class="material-icons right">more_vert</i></span>
+        <span class="card-content center">mode de Cuisson : {{recette.modeCuisson}}</span>
+        <span class="card-content center">Nombre de Personnes : {{recette.nombrePersonnes}}</span>
+        <p><a href="#">Voir les avis</a></p>
+      </div>
+      <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4">{{recette.nom}}<i class="material-icons right">close</i></span>
+        <ul>
+          <li *ngFor="let ingredient of recette.ingredients; index as index">
+            <span class="card-content-center">Ingrédient {{index+1}}: {{ingredient[0]}}, Quantité: {{ingredient[1]}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+-->
