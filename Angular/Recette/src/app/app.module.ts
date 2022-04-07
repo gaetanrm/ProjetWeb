@@ -7,13 +7,17 @@ import { AppComponent } from './app.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { RecettesComponent } from './recettes/recettes.component';
+import { SavoirplusComponent } from './savoirplus/savoirplus.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     IngredientsComponent,
     ConnexionComponent,
-    RecettesComponent
+    RecettesComponent,
+    SavoirplusComponent,
+    HomeComponent
   ],
   imports: [
     HttpClientModule,
