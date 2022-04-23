@@ -29,7 +29,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
             res.end(JSON.stringify([]));
         }
     });
-    /* Liste des produits */
+    /* Liste des recettes */
     app.get("/recettes", (req,res) => {
         console.log("/recettes");
         try {

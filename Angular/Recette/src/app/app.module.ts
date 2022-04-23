@@ -9,6 +9,8 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { RecettesComponent } from './recettes/recettes.component';
 import { SavoirplusComponent } from './savoirplus/savoirplus.component';
 import { HomeComponent } from './home/home.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { HomeComponent } from './home/home.component';
     ConnexionComponent,
     RecettesComponent,
     SavoirplusComponent,
-    HomeComponent
+    HomeComponent,
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     HttpClientModule,
