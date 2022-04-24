@@ -42,6 +42,19 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
         }
     });
 
+    /* Liste des utilisateurs */
+    app.get("/users", (req,res) => {
+        console.log("/users");
+        try {
+            db.collection("users").find().toArray((err, documents) => {
+                res.end(JSON.stringify(documents));
+            });
+        } catch(e) {
+            console.log("Erreur sur /users : " + e);
+            res.end(JSON.stringify([]));
+        }
+    });
+
     /* Liste des catégories de produits */
     app.get("/produits/:categorie", (req,res) => {
         let nomcat = {};
@@ -75,6 +88,18 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
                     res.end(JSON.stringify({"resultat": 1, "message": "Authentification réussie", "user": documents[0]}));
                 else res.end(JSON.stringify({"resultat": 0, "message": "Email et/ou mot de passe incorrect"}));
             });
+        } catch (e) {
+            res.end(JSON.stringify({"resultat": 0, "message": e}));
+        }
+    });
+
+    /* Inscription */
+    app.post("/user/inscription", (req,res) => {
+        console.log("/user/inscription avec "+JSON.stringify(req.body));
+        try {
+            db.collection("users")
+            .insertOne(req.body)
+            res.end(JSON.stringify({"resultat": 1, "message": "Inscription réussie"}));
         } catch (e) {
             res.end(JSON.stringify({"resultat": 0, "message": e}));
         }

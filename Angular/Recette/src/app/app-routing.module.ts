@@ -14,8 +14,8 @@ const routes: Routes = [
   { path: 'recettes', component: RecettesComponent},
   { path: 'ensavoirplus', component: SavoirplusComponent},
   { path: '', component: HomeComponent},
-  { path: '**', component: PagenotfoundComponent},
-  { path: 'inscription', component: InscriptionComponent}
+  { path: 'inscription', component: InscriptionComponent},
+  { path: '**', component: PagenotfoundComponent}
 ];
 
 @NgModule({
