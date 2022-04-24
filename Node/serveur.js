@@ -41,18 +41,6 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
             res.end(JSON.stringify([]));
         }
     });
-    /*app.get("/produits/:categorie", (req,res) => {
-	let categorie = req.params.categorie;
-        console.log("/produits/"+categorie);
-        try {
-            db.collection("produits").find({nom:categorie}).toArray((err, documents) => {
-                res.end(JSON.stringify(documents));
-            });
-        } catch(e) {
-            console.log("Erreur sur /produits/"+categorie+" : "+ e);
-            res.end(JSON.stringify([]));
-        }
-    });*/
 
     /* Liste des catégories de produits */
     app.get("/produits/:categorie", (req,res) => {
@@ -78,13 +66,13 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 
     /* Connexion */
     app.post("/user/connexion", (req,res) => {
-        console.log("/utilisateurs/connexion avec "+JSON.stringify(req.body));
+        console.log("/user/connexion avec "+JSON.stringify(req.body));
         try {
             db.collection("users")
             .find(req.body)
             .toArray((err, documents) => {
                 if (documents.length == 1)
-                    res.end(JSON.stringify({"resultat": 1, "message": "Authentification réussie"}));
+                    res.end(JSON.stringify({"resultat": 1, "message": "Authentification réussie", "user": documents[0]}));
                 else res.end(JSON.stringify({"resultat": 0, "message": "Email et/ou mot de passe incorrect"}));
             });
         } catch (e) {
