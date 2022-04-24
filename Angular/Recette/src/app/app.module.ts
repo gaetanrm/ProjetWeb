@@ -11,6 +11,8 @@ import { SavoirplusComponent } from './savoirplus/savoirplus.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { InscriptionComponent } from './inscription/inscription.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { FooterComponent } from './footer/footer.component';
     SavoirplusComponent,
     HomeComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    PagenotfoundComponent,
+    InscriptionComponent
   ],
   imports: [
     HttpClientModule,
