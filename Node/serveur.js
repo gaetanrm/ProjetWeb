@@ -19,6 +19,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 
     /* Liste des produits */
     app.get("/produits", (req,res) => {
+        console.log("Récupération de tous les produits");
         console.log("/produits");
         try {
             db.collection("produits").find().toArray((err, documents) => {
@@ -31,6 +32,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
     });
     /* Liste des recettes */
     app.get("/recettes", (req,res) => {
+        console.log("Récupération de toutes les recettes");
         console.log("/recettes");
         try {
             db.collection("recettes").find().toArray((err, documents) => {
@@ -42,6 +44,54 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
         }
     });
 
+    /* Recherche de produits ou de recettes par leur nom */
+    app.get("/:tab/:nom", (req, res) => {
+        let tab = req.params.tab;
+        let nom = req.params.nom;
+        console.log("Tentative de récupération de recettes et/ou produits ayant le même nom que la recherche");
+        console.log("/" + tab + "/" + nom);
+
+        try {
+            let nomdb = {"nom": nom};
+            db.collection(tab).find(nomdb).toArray((err, documents) => {
+                console.log(documents);
+                res.end(JSON.stringify(documents));
+            });
+        } catch(e) {
+            console.log("Erreur sur /" + tab + "/" + nom + " : " + e);
+            res.end(JSON.stringify([]));
+        }
+
+    });
+
+    /* Recherche de recettes par un ingrédient */
+    app.get("/recettes/ingredients/:ingredient", (req, res) => {
+        let ingredient = req.params.ingredient;
+        let mying = "ingredients";
+        console.log("recettes/ingredients/" + ingredient);
+        console.log("Tentative de récupération de recettes ayant l'ingrédient : " + ingredient);
+
+        try {
+            let ingredientdb = {};
+            returnvalue = [];
+
+            db.collection("recettes").find(ingredientdb).toArray((err, documents) => {
+                for (let doc of documents) {
+                    if (doc.hasOwnProperty("ingredients") && doc["ingredients"] == ingredient) {
+                        //if (!returnvalue.includes(doc.mying))
+                            returnvalue.push([doc]);
+                    }
+                }
+                console.log(returnvalue);
+                res.end(JSON.stringify(returnvalue));
+            });
+        } catch(e) {
+            console.log("Erreur sur /recettes/ingredients/"  + ingredient + " : " + e);
+            res.end(JSON.stringify([]));
+        }
+
+    });
+
     /* Liste des utilisateurs */
     app.get("/users", (req,res) => {
         console.log("/users");
@@ -51,28 +101,6 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
             });
         } catch(e) {
             console.log("Erreur sur /users : " + e);
-            res.end(JSON.stringify([]));
-        }
-    });
-
-    /* Liste des catégories de produits */
-    app.get("/produits/:categorie", (req,res) => {
-        let nomcat = {};
-        nomcat[Symbol(req.params.categorie)] = req.params.categorie;
-        console.dir(nomcat);
-        console.log("/" + nomcat);
-	categories = [];
-        try {
-            db.collection("produits").find(nomcat).toArray((err, documents) => {
-		for (let doc of documents) {
-                    //if (!categories.includes(doc.nomcat[req.params.categorie])) categories.push(doc.nomcat[req.params.categorie]); 
-                    categories.push(doc.get(nomcat));
-		}
-            console.log("Renvoi de"+JSON.stringify(categories));
-                res.end(JSON.stringify(categories));
-            });
-        } catch(e) {
-            console.log("Erreur sur /categories : " + e);
             res.end(JSON.stringify([]));
         }
     });
@@ -98,6 +126,18 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
         console.log("/user/inscription avec "+JSON.stringify(req.body));
         try {
             db.collection("users")
+            .insertOne(req.body)
+            res.end(JSON.stringify({"resultat": 1, "message": "Inscription réussie"}));
+        } catch (e) {
+            res.end(JSON.stringify({"resultat": 0, "message": e}));
+        }
+    });
+
+    /* Ajout d'une recette */
+    app.post("/recettes/ajout", (req,res) => {
+        console.log("/recettes/ajout avec "+JSON.stringify(req.body));
+        try {
+            db.collection("recettes")
             .insertOne(req.body)
             res.end(JSON.stringify({"resultat": 1, "message": "Inscription réussie"}));
         } catch (e) {

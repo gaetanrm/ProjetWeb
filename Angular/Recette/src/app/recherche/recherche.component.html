@@ -1,0 +1,59 @@
+<div class="row center-cols center-align">
+    <div *ngFor="let recette of resRecette;">
+        <div class="card col m6">
+            <div class="card-content">
+                <span class="card-title center activator grey-text text-darken-4">{{recette.nom}}<i class="material-icons right">more_vert</i></span>
+                <span class="card-content center">mode de Cuisson : {{recette.modeCuisson}}</span>
+                <span class="card-content center">Nombre de Personnes : {{recette.nombrePersonnes}}</span>
+                <div class="card-action">
+                <p><a href="#" class="cyan-text">Voir les avis</a>
+                <a href="#" routerLink="/ensavoirplus" class="cyan-text">En savoir plus</a>
+                </p>
+            </div>
+        </div>
+        <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">Ingrédients<i class="material-icons right">close</i></span>
+            <ul>
+                <div *ngFor="let ingredient of recette.ingredients;">
+                    <span class="card-content">- {{ingredient[0]}}, Quantité: {{ingredient[1]}}</span>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row center-cols center-align">
+    <div *ngFor="let recette of resRecettebyIng;">
+        <div class="card col m6">
+            <div class="card-content">
+                <span class="card-title center activator grey-text text-darken-4">{{recette.nom}}<i class="material-icons right">more_vert</i></span>
+                <span class="card-content center">mode de Cuisson : {{recette.modeCuisson}}</span>
+                <span class="card-content center">Nombre de Personnes : {{recette.nombrePersonnes}}</span>
+                <div class="card-action">
+                <p><a href="#" class="cyan-text">Voir les avis</a>
+                <a href="#" routerLink="/ensavoirplus" class="cyan-text">En savoir plus</a>
+                </p>
+            </div>
+        </div>
+        <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">Ingrédients<i class="material-icons right">close</i></span>
+            <ul>
+                <div *ngFor="let ingredient of recette.ingredients;">
+                    <span class="card-content">- {{ingredient[0]}}, Quantité: {{ingredient[1]}}</span>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row center-cols center-align">
+    <div *ngFor="let ingredient of resIngredient;">
+        <div class="card col m6">
+            <div class="card-content">
+                <span class="card-title center grey-text text-darken-4">{{ingredient.nom}}</span>
+                <span class="card-content center">Prix : {{ingredient.prix}} €</span>
+                <span class="card-content center">Unité : {{ingredient.unite}}</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -5,13 +5,11 @@
           <a href="#" routerLink="" class="brand-logo center">MinuteMeal</a>
           <!--<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>-->
           <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <form>
               <div class="input-field">
-                <input placeholder="Rechercher" id="search" type="search" required>
+                <input #name class="blue-text" placeholder="Rechercher" id="search" type="search" required>
                 <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                <i class="material-icons">close</i>
-              </div>
-            </form>
+                <i class="material-icons" (click)="this.ingredientService.setName(name.value);">chevron_right</i>
+              </div>  
           </ul>
           <ul id="nav-mobile2" class="right hide-on-med-and-down">
             <li class="tab"><a href="#" routerLink="/recettes">Recettes</a></li>

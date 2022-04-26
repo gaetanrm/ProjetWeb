@@ -13,6 +13,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { RechercheComponent } from './recherche/recherche.component';
+import { AjouterrecetteComponent } from './ajouterrecette/ajouterrecette.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { InscriptionComponent } from './inscription/inscription.component';
     NavbarComponent,
     FooterComponent,
     PagenotfoundComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    RechercheComponent,
+    AjouterrecetteComponent
   ],
   imports: [
     HttpClientModule,

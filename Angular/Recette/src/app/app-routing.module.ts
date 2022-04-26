@@ -7,6 +7,8 @@ import { SavoirplusComponent } from './savoirplus/savoirplus.component';
 import { HomeComponent } from './home/home.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { RechercheComponent } from './recherche/recherche.component';
+import { AjouterrecetteComponent } from './ajouterrecette/ajouterrecette.component';
 
 const routes: Routes = [
   { path: 'ingredients', component: IngredientsComponent },
@@ -15,11 +17,13 @@ const routes: Routes = [
   { path: 'ensavoirplus', component: SavoirplusComponent},
   { path: '', component: HomeComponent},
   { path: 'inscription', component: InscriptionComponent},
+  { path: 'recherche', component: RechercheComponent},
+  { path: 'ajouterecette', component: AjouterrecetteComponent},
   { path: '**', component: PagenotfoundComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
