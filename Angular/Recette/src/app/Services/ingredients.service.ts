@@ -11,9 +11,9 @@ import { Router } from '@angular/router';
 export class IngredientsService {
 
   private urlBase: string = 'http://localhost:8888/';
-  private name : string = "";
-  private listRecettes : Recette[] = new Array();
-  private resRecettes : Recette[] = new Array();
+  private name : string = ""; //Pour stocker la recherche
+  private listRecettes : Recette[] = new Array(); //Pour stocker la liste des recettes récupérées
+  private resRecettes : Recette[] = new Array(); //Pour stocker les recettes correspondantes à la recherche
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -29,7 +29,7 @@ export class IngredientsService {
     return this.http.get<Recette[]>(this.urlBase+'recettes');
   }
 
-  //Permet de rechercher à partir d'un nom
+  //Permet de rechercher une recette à partir d'un nom
   getRecetteByID(name : string) : Observable<Recette[]> {
     console.log("Recherche de recette");
     let resRecette : Observable<Recette[]> = this.http.get<Recette[]>(this.urlBase+'recettes/' + name);
@@ -38,6 +38,7 @@ export class IngredientsService {
     return resRecette;
   }
 
+  //Permet de rechercher un ingrédient à partir d'un nom
   getIngredientByID(name : string) : Observable<Ingredient[]> {
     console.log("Recherche d'ingrédient");
     let resIngredient : Observable<Ingredient[]> = this.http.get<Ingredient[]>(this.urlBase+'produits/' + name);
@@ -46,14 +47,7 @@ export class IngredientsService {
     return resIngredient;
   }
 
-  /*getRecetteByIngredient(ingredient : string) : Observable<Recette[]> {
-    console.log("Recherche de recette par ingrédient");
-    let resRecette : Observable<Recette[]> = this.http.get<Recette[]>(this.urlBase+'recettes/ingredients/' + ingredient);
-    if ((resRecette == undefined) && (resRecette == null))
-      console.log("aucune recette correspond à la recherche");
-    return resRecette;
-  }*/
-
+  //Permet de rechercher une recette à partir d'un de ces ingrédients
   getRecettesByIngredient() : Recette[] {
     this.resRecettes = new Array();
     this.getRecettes().subscribe(res => {
@@ -65,7 +59,7 @@ export class IngredientsService {
           console.log("nom ingrédient recherché : " + this.getName());
           console.log("ingrédient actuel : " + ingredient);
           if (ingredient[0] === this.getName()){
-            console.log("je l'ai !!!!!!!")
+            console.log("J'ai cet ingrédient")
             this.resRecettes.push(recette);
           }
         }
@@ -73,13 +67,23 @@ export class IngredientsService {
     }return this.resRecettes;
   }
 
+  //Permet de stocker la recherche effectuée par l'utilisateur
   setName(newName : string){
     this.name = newName;
+    //On souhaite recharger la page si l'utilisateur effectue une nouvelle recherche
+    //et qu'il est déjà sur la page recherche (donc url déjà égale à '/recherche')
+    //On utilise donc le système de strategy ci-dessous
     this.router.routeReuseStrategy.shouldReuseRoute = function() { return false; };
     this.router.navigate(['/recherche']);
   }
 
+  //Permet de récupérer la recherche effectuée par l'utilisateur
   getName() : string{
     return this.name;
+  }
+
+  //Permet d'ajouter une nouvelle recette
+  pushNewRecette(){
+
   }
 }

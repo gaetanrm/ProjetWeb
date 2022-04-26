@@ -5,6 +5,7 @@
             <div class="card-content">
                 <div class="row">
                     <form class="col s12" method="post">
+                        <h6>Informations de la recette :</h6>
                         <div class="row">
                             <div class="input-field col s12 center">
                                 <input #name type="text" required/>
@@ -24,17 +25,24 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="input-field col s12 center">
-                                <input #ingredients type="text" required/>
-                                <label>Liste des ingrédients</label>
+                            <div #divIngredient id="divIngredient" class="col s12 center">
+                                <h6>Liste des ingrédients :</h6>
+                                <div class="input-field col s10 center">
+                                    <input #ingredient1 type="text" required/>
+                                    <label>Ingrédient</label>
+                                </div>
+                                <div class="input-field col s2 center">
+                                    <input #quantite1 type="number" [defaultValue]="1" required/>
+                                    <label>Quantité</label>
+                                </div>
                             </div>
+                            <a class="white btn" (click)="this.addIngredient();" ><span class="cyan-text">Ajouter un ingrédient</span></a>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="card-action">
                 <a class="white btn"><span class="cyan-text">Valider</span></a>
-                <a class="white btn" href="#" routerLink="/inscription"><span class="cyan-text">S'inscrire</span></a>
             </div>
         </div>
     </div>
