@@ -8,6 +8,10 @@ import { IngredientsService } from '../Services/ingredients.service';
 })
 export class AjouterrecetteComponent implements OnInit {
 
+  public listIngredients : any[] = new Array();
+  public listInput : any[] = new Array();
+  public indInput : number = 1;
+
   constructor(public ingredientService : IngredientsService) { }
 
   ngOnInit(): void {
@@ -31,6 +35,8 @@ export class AjouterrecetteComponent implements OnInit {
       //Input pour le nom de l'ingrédient
       let inputName = document.createElement('input');
       inputName.type = "text";
+      inputName.id = this.indInput.toString();
+      this.indInput++;
 
       //Label pour le nom de l'ingrédient
       let labelName = document.createElement('label');
@@ -48,6 +54,8 @@ export class AjouterrecetteComponent implements OnInit {
       let inputQuantity = document.createElement('input');
       inputQuantity.type = "number";
       inputQuantity.defaultValue = "1";
+      inputQuantity.id = this.indInput.toString();
+      this.indInput++;
 
       //Label pour la quantité de l'ingrédient
       let labelQuantity = document.createElement('label');
@@ -60,6 +68,35 @@ export class AjouterrecetteComponent implements OnInit {
       //Pour finir, on ajoute les deux div à la div principale de l'HTML
       element.appendChild(divName);
       element.appendChild(divQuantity);
+
+      let oneIng : HTMLInputElement[] = [inputName, inputQuantity];
+      this.listInput.push(oneIng);
+      console.log(this.listInput);
     }
+  }
+
+  //Pour gérer l'ajout automatiquement lors de l'appuis sur valider
+  add(name : string, coockingMode : string, numberP : number){
+    for (let listIng of this.listInput){
+      let valueName : HTMLInputElement = listIng[0];
+      let valueQuantity : HTMLInputElement = listIng[1];
+      this.setListIngredients(valueName.value, valueQuantity.valueAsNumber);
+    }
+    this.addRecette(name, this.getListIngredients(), coockingMode, numberP);
+  }
+  //Permet d'ajouter une recette
+  addRecette(name : string, listIngredients : any[], coockingMode : string, numberP : number){
+    this.ingredientService.pushNewRecette(name, listIngredients, coockingMode, numberP);
+  }
+
+  //Permet de récupérer la liste des ingrédients
+  getListIngredients() : any[]{
+    return this.listIngredients;
+  }
+
+  //Permet de mettre à jour la liste des ingrédients avec le nouvel ingrédient
+  setListIngredients(newIngredient : string, newQuantity : number){
+    let list : any[] = [newIngredient, newQuantity];
+    this.listIngredients.push(list);
   }
 }

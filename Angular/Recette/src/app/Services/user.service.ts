@@ -57,7 +57,7 @@ export class UserService {
         this.router.navigate(['/connexion']); 
       }else
         alert(result.message);
-    })
+    });
   }
 
   //Pour récupérer la liste de tous les utilisateurs

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Ingredient } from '../Models/Ingredient';
 import { Recette } from '../Models/Recette';
 import { Router } from '@angular/router';
+import { Response } from '../Models/Response';
 
 @Injectable({
   providedIn: 'root'
@@ -83,7 +84,17 @@ export class IngredientsService {
   }
 
   //Permet d'ajouter une nouvelle recette
-  pushNewRecette(){
-
+  pushNewRecette(nom : string, ingredients : any[], modeCuisson : string, nombrePersonnes : number){
+    console.log("On ajoute une recette");
+    console.log("Objet reçu : Nom : " + nom + "Liste ingrédients : " + ingredients + 
+                                      "Mode de cuisson : " + modeCuisson + "Nombre de personnes : " + nombrePersonnes);
+    let addRec : Observable<Response> = this.http.post<Response>(this.urlBase+"recettes/ajout", {nom, ingredients, modeCuisson, nombrePersonnes});
+    addRec.subscribe(result => {
+      if (result.resultat == 1){
+        //On redirige l'utilisateur vers la page de recettes
+        this.router.navigate(['/recettes']); 
+      }else
+        alert(result.message);
+    });
   }
 }

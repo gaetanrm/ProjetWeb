@@ -20,7 +20,7 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12 center">
-                                <input #howmany type="text" required/>
+                                <input #howmany type="number" required/>
                                 <label>Nombre de personnes</label>
                             </div>
                         </div>
@@ -28,21 +28,23 @@
                             <div #divIngredient id="divIngredient" class="col s12 center">
                                 <h6>Liste des ingrédients :</h6>
                                 <div class="input-field col s10 center">
-                                    <input #ingredient1 type="text" required/>
+                                    <input #ingredient1 id="ingredient1" type="text" required/>
                                     <label>Ingrédient</label>
                                 </div>
                                 <div class="input-field col s2 center">
-                                    <input #quantite1 type="number" [defaultValue]="1" required/>
+                                    <input #quantite1 id="quantite1" type="number" [defaultValue]="1" required/>
                                     <label>Quantité</label>
                                 </div>
                             </div>
-                            <a class="white btn" (click)="this.addIngredient();" ><span class="cyan-text">Ajouter un ingrédient</span></a>
+                            <div *ngIf="this.indInput == 1;then content; else other_content"></div>
+                            <ng-template #content><a class="white btn" (click)="this.addIngredient();this.setListIngredients(ingredient1.value, quantite1.valueAsNumber);" ><span class="cyan-text">Ajouter un ingrédient</span></a></ng-template>
+                            <ng-template #other_content><a class="white btn" (click)="this.addIngredient();" ><span class="cyan-text">Ajouter un ingrédient</span></a></ng-template>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="card-action">
-                <a class="white btn"><span class="cyan-text">Valider</span></a>
+                <a class="white btn" (click)="this.add(name.value, mode.value, howmany.valueAsNumber);" ><span class="cyan-text">Valider</span></a>
             </div>
         </div>
     </div>

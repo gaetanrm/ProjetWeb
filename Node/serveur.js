@@ -139,7 +139,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
         try {
             db.collection("recettes")
             .insertOne(req.body)
-            res.end(JSON.stringify({"resultat": 1, "message": "Inscription réussie"}));
+            res.end(JSON.stringify({"resultat": 1, "message": "Ajout réussi"}));
         } catch (e) {
             res.end(JSON.stringify({"resultat": 0, "message": e}));
         }
