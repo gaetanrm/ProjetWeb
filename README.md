@@ -2,7 +2,7 @@ Projet Réalisé par ROMERO Gaétan pour l'UE Architecture Avancée du Web
 
 Ce site fournit 4 fonctionnalités différentes à l'utilisateur.
 
-#La recherche
+**La recherche**
 <br/>
   Située en haut à gauche de la page, la barre de recherche permet à l'utilisateur de rechercher soit une recette, soit un ingrédient et les recettes qui le contiennent.
 Par contre, pour le moment, lors de la première recherche, il faut rechercher deux fois sinon la recherche n'est pas complète.
