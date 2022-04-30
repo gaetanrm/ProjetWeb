@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { RecettesComponent } from './recettes/recettes.component';
-import { SavoirplusComponent } from './savoirplus/savoirplus.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
@@ -22,7 +21,6 @@ import { AjouterrecetteComponent } from './ajouterrecette/ajouterrecette.compone
     IngredientsComponent,
     ConnexionComponent,
     RecettesComponent,
-    SavoirplusComponent,
     HomeComponent,
     NavbarComponent,
     FooterComponent,
